@@ -17,6 +17,8 @@ using namespace std;
 int menu();
 void displayHeader();
 Flight populate_flight(char * file_name);
+void wait_enter();
+
 
 int main()
 {
@@ -26,32 +28,31 @@ int main()
 	
 	//demo code. November 23
 	int choice = 1;
-	while (choice!=0){
+	while (choice){
 		switch(menu()){ //switch will perform each different case depending on the return value of menu()
 			case 1:
 				//display the flight seat map
-				pressEnter();
+				wait_enter();
 				break;
 			case 2:
 				//display passengers information
-				PressEnter();
+				wait_enter();
 				break;
 			case 3:
 				//adds a new passenger
-				PressEnter();
+				wait_enter();
 				break;
 			case 4:
 				//removes an existing passenger
-				PressEnter();
+				wait_enter();
 				break;
 			case 5:
 				//Saves data to file
-				PressEnter();
+				wait_enter();
 				break;
 			case 6:
 				//Quits
 				choice = 0;
-				PressEnter();
 				break;
 			default:
 				cout << "Invalid match. Please Try Again.";
@@ -86,5 +87,13 @@ Flight populate_flight(char * file_name)
 		cout << "Cannot open the file";
 		exit(1)
 	}
+	
+}
+
+void wait_enter()
+{
+	
+	cout << "<<< Press Return to Continue>>>";
+	while (getchar() != '\n');
 	
 }
