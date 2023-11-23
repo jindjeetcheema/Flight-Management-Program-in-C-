@@ -18,13 +18,27 @@ private:
 	int num_cols;
 	vector<Passenger> passengers;
 	vector<vector<Seat>> map;
-	int num_of_rows;
 	
 	
 public:
+
+
+	void set_rows(int value);
+	void set_cols(int value);
+	void set_id(string value);
+	
+	int get_rows()const;
+	int get_cols()const;
+	string get_id()const;
 	
 	void print_map();
-	void display_flight();
+	
+	void add_passenger(Passenger passenger);
+	
+	void remove_passenger(int pass_id);
+	
+	void display_passenger_info(int pass_id);
+	
 	
 	
 };
