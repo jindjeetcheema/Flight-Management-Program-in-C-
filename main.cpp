@@ -7,7 +7,6 @@ int main()
 	Flight  f;
 	displayHeader();
 	populate_flight ("flight_info.txt", f);
-	cout << "finished";
 	//demo code. November 23
 	int choice = 1;
 	while (choice){
@@ -63,32 +62,40 @@ void displayHeader()
 	cout << "Version: 1.0\n";
 	cout << "Term Project - Flight Management Program in C++\n";
 	cout << "Produced By: Cody Casselman, Jindjeet Cheem, Taiwu Chen\n\n";
-	//wait_enter();
+	wait_enter();
 }
 
 
 void wait_enter()
 {
 	//will wait until the user enters a newline value
-	//FIXME: Does not work
 	cout << "<<< Press Return to Continue>>>";
-	while (getchar() != '\n');
-	
+	while (cin.get() != '\n');
 }
 
-void populate_flight(char * file_name, Flight flight)
-{
+void populate_flight(char * file_name, Flight flight){
+	/*
+	Requires:
+	char * file_name is a string which holds the name of a file in the working directory
+	flight: ...
+
+	Promises:
+	function will read flight information and return a flight object, containing the populated flight
+	as read from the input file
+	*/
+	cout << "populate_flight has begun";
 	char s[21], f[10];
 	string fname, lname, phone_num, flight_id;
 	int row, id, flight_rows, flight_cols;
 	char col;
 	
+	//creating istream object in. which will read various values from the input file
 	ifstream in (file_name, ios::in);
 	if (in.fail()){
 		cout << "Unable to read file. Please try again.";
 		exit(1);
 	}
-	//in class example:
+
 	//reading in flight information
 	in.get(f, 10, '\n');
 	flight_id = f;
@@ -97,36 +104,42 @@ void populate_flight(char * file_name, Flight flight)
 
 
 
-	//reading in passenger information and 
+	//reading in passenger information
 	//#TODO:place passenger info into classes
 	do{
 
+		//reading first name
 		in.get(s, 21, '\0');
+		if (in.eof()) break;
 		fname = s;
 		trim_trailing_spaces(fname);
-		if (in.eof()) break;
+		
 
+		//reading last name
 		in.get(s, 21, '\n');
 		if(in.eof()) break;
 		lname = s;
 		trim_trailing_spaces(lname);
 		
+		//reading phone number
 		in.get(s, 21, '\n');
 		if(in.eof()) break;
 		phone_num = s;
 		trim_trailing_spaces(phone_num);
 		
+		//reading passenger row, column, id
 		in >> row;
 		col = in.get();
 		if(in.eof()) break;
-		
 		in >> id;
-	
-	}while(!in.eof());
+	}while(!in.eof()); //will perform the above actions until it reaches the end of file
 }
 
 
 void trim_trailing_spaces(string &s){
+	//REQUIRES: String reference s
+	//Promises: String s will be manipulated so that all whitespace characters at the end of the string
+	//will be removed
 	while((s.at(s.size()-1) == ' '|| s.at(s.size()-1) == '\n') && s.size()> 0){
 		s.pop_back();
 	}
