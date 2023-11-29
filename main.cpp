@@ -1,31 +1,13 @@
 //Term Project - Group #7
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <vector>
-#include <iostream>
-#include "seat.h"
-#include "flight.h"
-#include "passenger.h"
-#include "airline.h"
-
-using namespace std;
-
-
-
-int menu();
-void displayHeader();
-Flight populate_flight(char * file_name);
-void wait_enter();
+#include "main.h"
 
 
 int main()
 {
-	Flight * f;
+	Flight  f;
 	displayHeader();
-	f = populate_flight ("file_name");
-	
+	populate_flight ("flight_info.txt", f);
+	cout << "finished";
 	//demo code. November 23
 	int choice = 1;
 	while (choice){
@@ -57,7 +39,9 @@ int main()
 			default:
 				cout << "Invalid match. Please Try Again.";
 		}
+	}
 }
+		
 
 int menu()
 {
@@ -76,24 +60,75 @@ int menu()
 
 void displayHeader()
 {
-	cout << "woohoo";
+	cout << "Version: 1.0\n";
+	cout << "Term Project - Flight Management Program in C++\n";
+	cout << "Produced By: Cody Casselman, Jindjeet Cheem, Taiwu Chen\n\n";
+	//wait_enter();
 }
 
-Flight populate_flight(char * file_name)
-{
-	ifstream in (file_name, ios::in);
-	
-	if (in.fail()){
-		cout << "Cannot open the file";
-		exit(1)
-	}
-	
-}
 
 void wait_enter()
 {
-	
+	//will wait until the user enters a newline value
+	//FIXME: Does not work
 	cout << "<<< Press Return to Continue>>>";
 	while (getchar() != '\n');
 	
+}
+
+void populate_flight(char * file_name, Flight flight)
+{
+	char s[21], f[10];
+	string fname, lname, phone_num, flight_id;
+	int row, id, flight_rows, flight_cols;
+	char col;
+	
+	ifstream in (file_name, ios::in);
+	if (in.fail()){
+		cout << "Unable to read file. Please try again.";
+		exit(1);
+	}
+	//in class example:
+	//reading in flight information
+	in.get(f, 10, '\n');
+	flight_id = f;
+	in >> flight_rows;
+	in >> flight_cols;
+
+
+
+	//reading in passenger information and 
+	//#TODO:place passenger info into classes
+	do{
+
+		in.get(s, 21, '\0');
+		fname = s;
+		trim_trailing_spaces(fname);
+		if (in.eof()) break;
+
+		in.get(s, 21, '\n');
+		if(in.eof()) break;
+		lname = s;
+		trim_trailing_spaces(lname);
+		
+		in.get(s, 21, '\n');
+		if(in.eof()) break;
+		phone_num = s;
+		trim_trailing_spaces(phone_num);
+		
+		in >> row;
+		col = in.get();
+		if(in.eof()) break;
+		
+		in >> id;
+	
+	}while(!in.eof());
+}
+
+
+void trim_trailing_spaces(string &s){
+	while((s.at(s.size()-1) == ' '|| s.at(s.size()-1) == '\n') && s.size()> 0){
+		s.pop_back();
+	}
+		
 }
