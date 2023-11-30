@@ -1,6 +1,14 @@
 //Term Project - Group #7
-#include "main.h"
 
+#include "main.h"
+#include "seat.h"
+#include "flight.h"
+#include "passenger.h"
+#include "airline.h"
+#include "seat.cpp"
+#include "flight.cpp"
+#include "passenger.cpp"
+#include "airline.cpp"
 
 int main()
 {
@@ -17,14 +25,17 @@ int main()
 				break;
 			case 2:
 				//display passengers information
+				f.display_information();
 				wait_enter();
 				break;
 			case 3:
 				//adds a new passenger
+				f.add_passenger();
 				wait_enter();
 				break;
 			case 4:
 				//removes an existing passenger
+				f.display_information();
 				wait_enter();
 				break;
 			case 5:
