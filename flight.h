@@ -10,7 +10,6 @@ using namespace std;
 class Flight {
     private:
         vector<Passenger> passengers;
-
     public:
         // Add a passenger to the flight
         void add_passenger();
