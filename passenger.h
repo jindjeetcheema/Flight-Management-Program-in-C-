@@ -18,7 +18,7 @@ class Passenger {
 
     public:
         // Constructor
-        Passenger(string fname, string lname, string phone_num, int row, char column, int id);
+        Passenger(string fname, string lname, string phone_num, int row, char seat, int id);
 
         // Getter functions
         string get_first_name() { return first_name; }

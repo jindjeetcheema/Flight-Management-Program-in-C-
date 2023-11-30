@@ -8,7 +8,7 @@ Passenger::Passenger(string fname, string lname, string phone_num, int row, char
     last_name = lname;
     phone_number = phone_num;
     row = row;
-    column = column;
+    column = seat;
     id = id;
 }
 
