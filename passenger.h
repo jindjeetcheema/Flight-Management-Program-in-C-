@@ -28,7 +28,7 @@ class Passenger {
         char get_column() { return column; }
         int get_id() { return id; }
 
-        // Display passenger information
+        // Display a single passenger information
         void display_information();
 };
 
