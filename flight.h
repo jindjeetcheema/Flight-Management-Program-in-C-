@@ -2,9 +2,9 @@
 #define FLIGHT_H
 
 #include <iostream>
-#include <iomanip>
 #include <vector>
 #include "passenger.h"
+
 using namespace std;
 
 class Flight {

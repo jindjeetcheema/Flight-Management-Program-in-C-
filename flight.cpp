@@ -1,27 +1,31 @@
 #include "flight.h"
-#include "passenger.h"
+#include <iomanip>
 
 void Flight::add_passenger(){
-	int id, row, colomn;
-	string f_name, l_name, phone_num;
-	
+    string first_name;
+    string last_name;
+    string phone_number;
+    int row;
+    char column;
+    int id;
+    
 	
 	cout << "Please enter the passenger id: "<<endl;
 	cin >>id;
 	
 	cout << "Please enter the passenger first name: "<<endl;
-	cin >> f_name;
+	cin >> first_name;
 
 	cout << "Please enter the passenger last name: "<<endl;
-	cin >> l_name;
+	cin >> last_name;
 
 	cout << "Please enter the passenger phone number: "<<endl;
-	cin >> phone_num;
+	cin >> phone_number;
 	
 	cout << "Enter passenger desired row: "<<endl;
 	cin >> row;
 
-    Passenger new_passenger(f_name, l_name, phone_num, row, colomn, id);
+    Passenger new_passenger(first_name, last_name, phone_number, row, column, id);
     // Add the Passenger object to the end of the passengers vector
     passengers.push_back(new_passenger);
 }
