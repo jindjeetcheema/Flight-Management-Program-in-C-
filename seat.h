@@ -7,11 +7,11 @@ class Seat{
 private:
 	int row;
 	char column;
-	char status;
+	bool status;
 
 public:
 
-	Seat(int row, int column);
+	Seat(int r, int c);
 
 	void set_row(int value);
 	void set_column(int value);
