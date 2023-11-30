@@ -1,7 +1,5 @@
 #include "passenger.h"
 #include "flight.h"
-#include <iomanip>
-#include <iostream>
 
 Passenger::Passenger(string fname, string lname, string phone_num, int row, char seat, int id){
     first_name = fname;

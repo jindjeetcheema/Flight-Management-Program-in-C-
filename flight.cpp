@@ -1,9 +1,5 @@
 #include "flight.h"
 #include "passenger.h"
-#include <iostream>
-#include <iomanip>
-#include <string>
-using namespace std;
 
 void Flight::add_passenger(){
 	int id, row, colomn;
