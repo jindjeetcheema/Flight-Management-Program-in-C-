@@ -25,6 +25,7 @@ void Flight::add_passenger(){
 	cin >> row;
 
     Passenger new_passenger(f_name, l_name, phone_num, row, colomn, id);
+    // Add the Passenger object to the end of the passengers vector
     passengers.push_back(new_passenger);
 }
 
@@ -36,6 +37,7 @@ void Flight::remove_passenger() {
 
     for (int i = 0; i < passengers.size(); i++) {
         if (passengers[i].get_id() == id) {
+            // Delete the elements in passengers list
             passengers.erase(passengers.begin() + i);
             break;
         }

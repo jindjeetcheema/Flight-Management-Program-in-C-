@@ -12,6 +12,7 @@ Passenger::Passenger(string fname, string lname, string phone_num, int row, char
     id = id;
 }
 
+//iomanip included, this will create a table
 void Passenger::display_information() {
     cout << left << setw(15) << first_name << setw(15) << last_name << setw(15) << phone_number << setw(5) << row << setw(5) << column << setw(10) << id << endl;
 }
