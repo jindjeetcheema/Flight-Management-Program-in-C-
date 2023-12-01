@@ -21,6 +21,7 @@ int main()
 		switch(menu()){ //switch will perform each different case depending on the return value of menu()
 			case 1:
 				//display the flight seat map
+				f.display_seatmap();
 				wait_enter();
 				break;
 			case 2:

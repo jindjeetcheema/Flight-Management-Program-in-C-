@@ -35,6 +35,9 @@ class Flight {
 
 		// Display the information for all passengers
 		void display_information();
+
+        // Display the seat map
+        void display_seatmap();
 };
 
 #endif
