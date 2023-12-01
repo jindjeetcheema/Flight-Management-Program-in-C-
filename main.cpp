@@ -30,12 +30,12 @@ int main()
 				break;
 			case 3:
 				//adds a new passenger
-				f.add_passenger();
+				add_passenger(f);
 				wait_enter();
 				break;
 			case 4:
 				//removes an existing passenger
-				f.display_information();
+				remove_passenger(f);
 				wait_enter();
 				break;
 			case 5:
@@ -80,7 +80,7 @@ void displayHeader()
 void wait_enter()
 {
 	//will wait until the user enters a newline value
-	cout << "<<< Press Return to Continue>>>";
+	cout << "<<< Press Return to Continue>>>\n";
 	while (cin.get() != '\n');
 }
 
@@ -94,7 +94,6 @@ void populate_flight(char * file_name, Flight flight){
 	function will read flight information and return a flight object, containing the populated flight
 	as read from the input file
 	*/
-	cout << "populate_flight has begun";
 	char s[21], f[10];
 	string fname, lname, phone_num, flight_id;
 	int row, id, flight_rows, flight_cols;
@@ -112,8 +111,10 @@ void populate_flight(char * file_name, Flight flight){
 	flight_id = f;
 	in >> flight_rows;
 	in >> flight_cols;
-
-
+	
+	flight.set_id(flight_id);
+	flight.set_num_rows(flight_rows);
+	flight.set_num_cols(flight_cols);
 
 	//reading in passenger information
 	//#TODO:place passenger info into classes
@@ -142,8 +143,16 @@ void populate_flight(char * file_name, Flight flight){
 		in >> row;
 		col = in.get();
 		if(in.eof()) break;
+
 		in >> id;
+
+		Passenger new_passenger(fname, lname, phone_num, nullptr, id); //FIXME: nullptr bullshit
+		new_passenger.set_seat(row, col); //FIXME find way to streamline
+		flight.add_passenger(new_passenger);
+		
 	}while(!in.eof()); //will perform the above actions until it reaches the end of file
+
+
 }
 
 
@@ -155,4 +164,36 @@ void trim_trailing_spaces(string &s){
 		s.pop_back();
 	}
 		
+}
+
+void add_passenger(Flight flight){
+	int id, row;
+	string first_name, last_name, phone_number;
+	char col;
+
+	cout << "Please enter the passenger id: "<<endl;
+	cin >>id;
+	
+	cout << "Please enter the passenger first name: "<<endl;
+	cin >> first_name;
+
+	cout << "Please enter the passenger last name: "<<endl;
+	cin >> last_name;
+
+	cout << "Please enter the passenger phone number: "<<endl;
+	cin >> phone_number;
+	
+	cout << "Enter passenger desired row: "<<endl;
+	cin >> row;
+
+	cout << "Enter passenger desired column: "<<endl;
+	cin >> col;
+}
+
+void remove_passenger(Flight flight){
+	int id;
+	cout << "Please enter the id of the passenger that needs to be removed: ";
+    cin >> id;
+
+	flight.remove_passenger(id);
 }

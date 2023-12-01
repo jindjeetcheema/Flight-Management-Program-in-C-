@@ -1,41 +1,13 @@
 #include "flight.h"
-#include <iomanip>
 
-void Flight::add_passenger(){
-    string first_name;
-    string last_name;
-    string phone_number;
-    int row;
-    char column;
-    int id;
-    
-	
-	cout << "Please enter the passenger id: "<<endl;
-	cin >>id;
-	
-	cout << "Please enter the passenger first name: "<<endl;
-	cin >> first_name;
-
-	cout << "Please enter the passenger last name: "<<endl;
-	cin >> last_name;
-
-	cout << "Please enter the passenger phone number: "<<endl;
-	cin >> phone_number;
-	
-	cout << "Enter passenger desired row: "<<endl;
-	cin >> row;
-
-    Passenger new_passenger(first_name, last_name, phone_number, row, column, id);
+void Flight::add_passenger(Passenger new_passenger)
+{
     // Add the Passenger object to the end of the passengers vector
     passengers.push_back(new_passenger);
 }
 
-void Flight::remove_passenger() {
-    int id;
-
-    cout << "Please enter the id of the passenger that needs to be removed: ";
-    cin >> id;
-
+void Flight::remove_passenger(int id) {
+    //parse through the passenger vector
     for (int i = 0; i < passengers.size(); i++) {
         if (passengers[i].get_id() == id) {
             // Delete the elements in passengers list

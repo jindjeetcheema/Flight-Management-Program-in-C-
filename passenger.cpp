@@ -1,12 +1,22 @@
 #include "passenger.h"
-#include <iomanip>
 
-Passenger::Passenger(string fname, string lname, string phone_num,Seat * s, int id){
+void Passenger::set_seat(int row, char col){
+    seat = new Seat(row, col);
+}
+
+Passenger::~Passenger()
+{
+    delete seat;
+    seat = nullptr;
+}
+
+
+Passenger::Passenger(string fname, string lname, string phone_num, Seat * s, int pass_id){
     first_name = fname;
     last_name = lname;
     phone_number = phone_num;
     seat = s;
-    id = id;
+    id = pass_id;
 }
 
 //iomanip included, this will create a table
