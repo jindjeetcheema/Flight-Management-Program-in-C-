@@ -2,7 +2,7 @@
 
 Flight::~Flight()
 {
-    passengers.erase(passengers.begin(), passengers.begin()+size(passengers));
+    passengers.erase(passengers.begin(), passengers.begin()+ passengers.size());
 }
 
 void Flight::add_passenger(string fname, string lname, string phone_num, int row, char col, int pass_id)
