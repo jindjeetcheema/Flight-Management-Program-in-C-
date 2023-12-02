@@ -31,3 +31,35 @@ void Flight::display_information() {
         p.display_information();
     }
 }
+
+void Flight::display_seatmap() {
+    // Create a 2D vector to represent the seats
+    vector<vector<string> > seatmap(num_rows, vector<string>(num_cols, "|"));
+
+    // Iterate over the passengers vector
+    for (vector<Passenger>::iterator it = passengers.begin(); it != passengers.end(); ++it) {
+        // Get the passenger's seat
+        Seat* s = it->get_seat();
+        int row = s->get_row();
+        char col = s->get_column();
+
+        // Convert the column to an index
+        int col_index = col - 'A';
+
+        // Update the seatmap
+        seatmap[row-1][col_index] = "X";
+    }
+
+    // Print the seatmap
+    cout << "  A B C D E F" << endl;
+    for (int i = 0; i < num_rows; i++) {
+        cout << i+1 << " ";
+        for (int j = 0; j < num_cols; j++) {
+            cout << "+" << seatmap[i][j] << "+";
+        }
+        cout << endl;
+    }
+}
+
+
+
