@@ -47,19 +47,37 @@ void Flight::display_seatmap() {
         int col_index = col - 'A';
 
         // Update the seatmap
-        seatmap[row-1][col_index] = "X";
+        seatmap[row][col_index] = "X";
     }
 
     // Print the seatmap
-    cout << "  A B C D E F" << endl;
-    for (int i = 0; i < num_rows; i++) {
-        cout << i+1 << " ";
-        for (int j = 0; j < num_cols; j++) {
-            cout << "+" << seatmap[i][j] << "+";
-        }
-        cout << endl;
-    }
-}
+    cout << "      Aircraft Seat Map" << endl;
+	cout << "     A   B   C   D   E   F" << endl;
 
+	for (int i = 0; i < 10; i ++)    //for rows 1 to 9
+	{
+		cout << "   +---+---+---+---+---+---+" << endl;
+		cout << i << "  ";
+		for (int j = 0; j < 6; j++)
+		{
+			cout << "| " << seatmap[i][j] << " ";		
+		}
+		cout << "|" << endl;
+	}
+
+	for (int i = 10; i < 25; i ++) // for rows 10 to 24, to correct the indentation
+	{
+		cout << "   +---+---+---+---+---+---+" << endl;
+		cout << i << " ";
+		for (int j = 0; j < 6; j++)
+		{
+			cout << "| " << seatmap[i][j] << " ";		
+		}
+		cout << "|" << endl;
+	}
+	cout << "   +---+---+---+---+---+---+" << endl;
+	x = 0;
+
+}
 
 
