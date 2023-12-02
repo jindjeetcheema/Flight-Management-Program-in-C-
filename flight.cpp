@@ -76,7 +76,6 @@ void Flight::display_seatmap() {
 		cout << "|" << endl;
 	}
 	cout << "   +---+---+---+---+---+---+" << endl;
-	x = 0;
 
 }
 
