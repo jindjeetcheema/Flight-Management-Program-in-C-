@@ -14,7 +14,7 @@ int main()
 {
 	Flight  f;
 	displayHeader();
-	populate_flight ("flight_info.txt", f);
+	populate_flight ("flight_info.txt", &f);
 	//demo code. November 23
 	int choice = 1;
 	while (choice){
@@ -84,7 +84,7 @@ void wait_enter()
 	while (cin.get() != '\n');
 }
 
-void populate_flight(char * file_name, Flight flight){
+void populate_flight(char * file_name, Flight * flight){
 	/*
 	Requires:
 	char * file_name is a string which holds the name of a file in the working directory
@@ -112,9 +112,9 @@ void populate_flight(char * file_name, Flight flight){
 	in >> flight_rows;
 	in >> flight_cols;
 	
-	flight.set_id(flight_id);
-	flight.set_num_rows(flight_rows);
-	flight.set_num_cols(flight_cols);
+	flight->set_id(flight_id);
+	flight->set_num_rows(flight_rows);
+	flight->set_num_cols(flight_cols);
 
 	//reading in passenger information
 	//#TODO:place passenger info into classes
@@ -146,9 +146,7 @@ void populate_flight(char * file_name, Flight flight){
 
 		in >> id;
 
-		Passenger new_passenger(fname, lname, phone_num, nullptr, id); //FIXME: nullptr bullshit
-		new_passenger.set_seat(row, col); //FIXME find way to streamline
-		flight.add_passenger(new_passenger);
+		flight->add_passenger(fname, lname, phone_num, row, col, id);
 		
 	}while(!in.eof()); //will perform the above actions until it reaches the end of file
 

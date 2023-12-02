@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cassert>
 #include "seat.h"
 
 using namespace std;
@@ -14,12 +15,17 @@ private:
     string last_name;
     string phone_number;
     Seat* seat;
-    int id;    
+    int id, row;
+    char col;  
 public:
     // Constructor
-    Passenger(string fname, string lname, string phone, Seat* s, int pass_id);
-
+    Passenger(string fname, string lname, string phone, int pass_row, char pass_col, int pass_id);
+    // Destructor
     ~Passenger();
+    // Copy Constructor
+    Passenger(const Passenger& src);
+    //Copy Assignment Operator
+    Passenger& operator = (const Passenger& rhs);
     
     // Getter functions
     string get_first_name()const { return first_name; }

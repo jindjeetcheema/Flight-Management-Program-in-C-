@@ -1,14 +1,21 @@
 #include "flight.h"
 
-void Flight::add_passenger(Passenger new_passenger)
+Flight::~Flight()
+{
+    passengers.erase(passengers.begin(), passengers.begin()+size(passengers));
+}
+
+void Flight::add_passenger(string fname, string lname, string phone_num, int row, char col, int pass_id)
 {
     // Add the Passenger object to the end of the passengers vector
+    Passenger new_passenger(fname, lname, phone_num, row, col, pass_id);
     passengers.push_back(new_passenger);
+    
 }
 
 void Flight::remove_passenger(int id) {
     //parse through the passenger vector
-    for (int i = 0; i < passengers.size(); i++) {
+    for (size_t i = 0; i < passengers.size(); i++) {
         if (passengers[i].get_id() == id) {
             // Delete the elements in passengers list
             passengers.erase(passengers.begin() + i);

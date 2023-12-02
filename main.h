@@ -13,7 +13,7 @@ using namespace std;
 
 int menu();
 void displayHeader();
-void populate_flight(char * file_name, Flight flight);
+void populate_flight(char * file_name, Flight *flight);
 void wait_enter();
 void trim_trailing_spaces(string& s);
 void add_passenger(Flight flight);
