@@ -5,10 +5,7 @@
 #include "flight.h"
 #include "passenger.h"
 #include "airline.h"
-#include "seat.cpp"
-#include "flight.cpp"
-#include "passenger.cpp"
-#include "airline.cpp"
+
 
 int main()
 {
