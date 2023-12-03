@@ -1,10 +1,5 @@
 #include "passenger.h"
 
-
-
-
-
-
 Passenger::Passenger(string fname, string lname, string phone_num, int pass_row, char pass_col, int pass_id) : first_name(fname), last_name(lname),
 phone_number(phone_num), id(pass_id), row(pass_row), col(pass_col)
 {

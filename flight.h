@@ -11,6 +11,7 @@
 
 class Flight {
     private:
+        vector<vector<string> > seatmap;
         vector<Passenger> passengers;
         string flight_id;
         int num_rows, num_cols;
@@ -18,7 +19,7 @@ class Flight {
     public:
 
         //default constructor
-        Flight() : flight_id("\0"), num_rows(0), num_cols(0){}
+        Flight();
         //destructor
         ~Flight();
         //setter functions
@@ -29,6 +30,9 @@ class Flight {
         string get_id()const {return flight_id;}
         int get_num_rows()const {return num_rows; }
         int get_num_cols()const {return num_cols; }
+        
+        void initialize_seatmap();
+
 
         // Add a passenger to the passenger vector
         void add_passenger(string fname, string lname, string phone_num, int row, char col, int pass_id);

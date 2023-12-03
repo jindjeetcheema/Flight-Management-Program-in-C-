@@ -70,7 +70,7 @@ void displayHeader()
 {
 	cout << "Version: 1.0\n";
 	cout << "Term Project - Flight Management Program in C++\n";
-	cout << "Produced By: Cody Casselman, Jindjeet Cheem, Taiwu Chen\n\n";
+	cout << "Produced By: Cody Casselman, Jindjeet Cheem, Taiwu Chen\n";
 	wait_enter();
 }
 
@@ -78,7 +78,7 @@ void displayHeader()
 void wait_enter()
 {
 	//will wait until the user enters a newline value
-	cout << "<<< Press Return to Continue>>>\n";
+	cout << "\n<<< Press Return to Continue>>>\n";
 	while (cin.get() != '\n');
 }
 
@@ -113,6 +113,9 @@ void populate_flight(char * file_name, Flight * flight){
 	flight->set_id(flight_id);
 	flight->set_num_rows(flight_rows);
 	flight->set_num_cols(flight_cols);
+	// Initialize the seatmap
+	flight->initialize_seatmap();
+	
 
 	//reading in passenger information
 	//#TODO:place passenger info into classes
@@ -162,7 +165,7 @@ void trim_trailing_spaces(string &s){
 		
 }
 
-void add_passenger(Flight flight){
+void add_passenger(Flight& flight){
 	int id, row;
 	string first_name, last_name, phone_number;
 	char col;
@@ -184,9 +187,11 @@ void add_passenger(Flight flight){
 
 	cout << "Enter passenger desired column: "<<endl;
 	cin >> col;
+	
+	flight.add_passenger(first_name, last_name, phone_number, row, col, id);
 }
 
-void remove_passenger(Flight flight){
+void remove_passenger(Flight& flight){
 	int id;
 	cout << "Please enter the id of the passenger that needs to be removed: ";
     cin >> id;
