@@ -44,5 +44,5 @@ void Passenger::set_seat(int row, char col){
 void Passenger::display_information() {
     int row = seat->get_row();
     char column = seat->get_column();
-    cout << left << setw(15) << first_name << setw(15) << last_name << setw(15) << phone_number << setw(5) << row << setw(5) << column << setw(10) << id << endl;
+    cout << left << setw(20) << first_name << setw(20) << last_name << setw(16) << phone_number << setw(5) << row << setw(5) << column << setw(10) << id << endl;
 }
