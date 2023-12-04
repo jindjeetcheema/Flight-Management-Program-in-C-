@@ -45,7 +45,7 @@ void Flight::remove_passenger(int id) {
 
 
 void Flight::display_information() {
-    cout << left << setw(20) << "First Name" << setw(20) << "Last Name" << setw(16) << "Phone" << setw(5) << "Row" << setw(7) << "Seat" << setw(10) << "ID" << endl;
+    cout << left << setw(20) << "First Name" << setw(20) << "Last Name" << setw(16) << "Phone" << setw(5) << "Row" << setw(5) << "Seat" << setw(10) << "ID" << endl;
     for (Passenger& p : this->passengers) {
         p.display_information();
     }
