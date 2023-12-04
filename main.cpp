@@ -75,7 +75,7 @@ void displayHeader()
 {
 	cout << "Version: 1.0\n";
 	cout << "Term Project - Flight Management Program in C++\n";
-	cout << "Produced By: Cody Casselman, Jindjeet Cheem, Taiwu Chen\n";
+	cout << "Produced By: Cody Casselman, Jindjeet Cheema, Taiwu Chen\n";
 	wait_enter();
 }
 
