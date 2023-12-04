@@ -14,8 +14,12 @@ private:
 	
 public:
 	Airline();
+
+	void setName(string value) {name = value; } 
 	string getName() const;
 	vector<Flight> getFlights() const;
+
+	void add_flight(Flight flight){flights.push_back(flight); }
 };
 
 #endif
