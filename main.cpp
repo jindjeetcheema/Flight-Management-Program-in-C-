@@ -85,7 +85,6 @@ void wait_enter()
 	//will wait until the user enters a newline value
 	cout << "\n<<< Press Return to Continue>>>\n";
 	while (cin.get() != '\n');
-	cleanStandardInputStream();
 }
 
 void populate_flight(const char * file_name, Flight * flight){
