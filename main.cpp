@@ -223,7 +223,7 @@ void save_file(const char* file_name, Flight* flight){
 out << left << setw(9) <<  flight->get_id() << setw(6) << flight->get_num_rows() << flight-> get_num_cols();
 
 	//write all of the data back into the file from the flight class
-	for(size_t i = 0; i < size(passengers); i++){
+	for(size_t i = 0; i < passengers.size(); i++){
 		Passenger passenger = passengers.at(i);
 		//out << left << setw(20) << passengers.at(i).get_first_name() << setw(20) << passengers.at(i).get_last_name() << setw(21) << passengers.at(i).get_phone_number()  << passengers.at(i).get_seat()->get_row()  << passengers.at(i).get_seat()->get_column() << right <<passengers.at(i).get_id();
 		out << left << setw(20) << passenger.get_first_name() 
