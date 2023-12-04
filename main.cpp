@@ -65,7 +65,7 @@ int menu()
 	cout <<"4. Remove an Existing Passenger.\n";
 	cout <<"5. Save data.\n";
 	cout <<"6. Quit.\n";
-	cout <<"\n Enter your choice:: (1, 2, 3, 4, 5 or 6) ";
+	cout <<"\nEnter your choice (1, 2, 3, 4, 5 or 6): ";
 	cin >> choice;
 	cleanStandardInputStream();
 	return choice;
@@ -255,6 +255,7 @@ void save_file(const char* file_name, Flight* flight){
 		<< setw(5) <<passenger.get_id()
 		<< endl;
 	}
+	out << "\n"
 	out.close();
 }
 
