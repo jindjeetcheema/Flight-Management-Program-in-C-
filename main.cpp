@@ -85,7 +85,6 @@ void wait_enter()
 	//will wait until the user enters a newline value
 	cout << "\n<<< Press Return to Continue>>>\n";
 	while (cin.get() != '\n');
-	cleanStandardInputStream();
 }
 
 void populate_flight(const char * file_name, Flight * flight){
@@ -136,13 +135,13 @@ void populate_flight(const char * file_name, Flight * flight){
 		
 
 		//reading last name
-		in.get(s, 21, '\n');
+		in.get(s, 21, '\0');
 		if(in.eof()) break;
 		lname = s;
 		trim_trailing_spaces(lname);
 		
 		//reading phone number
-		in.get(s, 21, '\n');
+		in.get(s, 21, '\0');
 		if(in.eof()) break;
 		phone_num = s;
 		trim_trailing_spaces(phone_num);
@@ -186,7 +185,7 @@ void add_passenger(Flight& flight){
 
 	cout << "Please enter the passenger first name: (Maximum 20 Characters) "<<endl;
 	cin >> first_name;
-	first_name = '\n' + first_name;
+	first_name = first_name;
 	cleanStandardInputStream();
 
 	cout << "Please enter the passenger last name: (Maximum 20 Characters) "<<endl;
@@ -243,7 +242,7 @@ void save_file(const char* file_name, Flight* flight){
 		exit(1);
 	}
 
-	out << left << setw(9) <<  flight->get_id() << setw(6) << flight->get_num_rows() << flight-> get_num_cols();
+	out << left << setw(9) <<  flight->get_id() << setw(6) << flight->get_num_rows() << flight-> get_num_cols() << endl;
 
 	//write all of the data back into the file from the flight class
 	for(size_t i = 0; i < passengers.size(); i++){
@@ -251,7 +250,7 @@ void save_file(const char* file_name, Flight* flight){
 		//out << left << setw(20) << passengers.at(i).get_first_name() << setw(20) << passengers.at(i).get_last_name() << setw(21) << passengers.at(i).get_phone_number()  << passengers.at(i).get_seat()->get_row()  << passengers.at(i).get_seat()->get_column() << right <<passengers.at(i).get_id();
 		out << left << setw(20) << passenger.get_first_name() 
 		<< setw(20) << passenger.get_last_name() 
-		<< setw(19) << passenger.get_phone_number()  
+		<< setw(20) << passenger.get_phone_number()  
 		<< setw(4) << passenger.get_seat()->disp_seat()
 		<< setw(5) <<passenger.get_id()
 		<< endl;
