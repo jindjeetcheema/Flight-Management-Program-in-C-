@@ -45,18 +45,29 @@ void Flight::remove_passenger(int id) {
 
 
 void Flight::display_information() {
-    cout << left << setw(15) << "First Name" << setw(15) << "Last Name" << setw(14) << "Phone" << setw(5) << "Row" << setw(5) << "Seat" << setw(10) << "ID" << endl;
+    cout << left << setw(20) << "First Name" << setw(20) << "Last Name" << setw(14) << "Phone" << setw(5) << "Row" << setw(7) << "Seat" << setw(10) << "ID" << endl;
     for (Passenger& p : this->passengers) {
         p.display_information();
     }
 }
 
 void Flight::display_seatmap() {
-    // Print the seatmap
-    cout << "      Aircraft Seat Map" << endl;
+    // Print the header of seatmap
+    cout << "     Aircraft Seat Map" << endl;
     cout << "     A   B   C   D   E   " << endl;
     
-    for (int i = 0; i < num_rows; i++) {
+    //from row 1 to row 9
+    for (int i = 0; i < 9; i++) {
+        cout << "   +---+---+---+---+---+" << endl;
+        cout << i+1 << "  ";
+        for (int j = 0; j < num_cols; j++) {
+            cout << "| " << seatmap[i][j] << " ";
+        }
+        cout << "|" << endl;
+    }
+    
+    //from row 9 to num_rows
+    for (int i = 9; i < num_rows; i++) {
         cout << "   +---+---+---+---+---+" << endl;
         cout << i+1 << " ";
         for (int j = 0; j < num_cols; j++) {
