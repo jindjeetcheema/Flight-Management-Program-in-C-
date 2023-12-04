@@ -83,7 +83,6 @@ void displayHeader()
 void wait_enter()
 {
 	//will wait until the user enters a newline value
-	cin.clear();
 	cout << "\n<<< Press Return to Continue>>>\n";
 	while (cin.get() != '\n');
 	cleanStandardInputStream();
@@ -181,23 +180,47 @@ void add_passenger(Flight& flight){
 	string first_name, last_name, phone_number;
 	char col;
 
-	cout << "Please enter the passenger id: "<<endl;
+	cout << "Please enter the passenger id: (5 Numbers) "<<endl;
 	cin >>id;
-	
-	cout << "Please enter the passenger first name: "<<endl;
+	cleanStandardInputStream();
+
+	cout << "Please enter the passenger first name: (Maximum 20 Characters) "<<endl;
 	cin >> first_name;
+	first_name = '\n' + first_name;
+	cleanStandardInputStream();
 
-	cout << "Please enter the passenger last name: "<<endl;
+	cout << "Please enter the passenger last name: (Maximum 20 Characters) "<<endl;
 	cin >> last_name;
+	cleanStandardInputStream();
 
-	cout << "Please enter the passenger phone number: "<<endl;
+	//input for phone number
+	cout << "Please enter the passenger phone number: (Must Follow Standard XXX-XXX-XXXX Formatting) "<<endl;
 	cin >> phone_number;
-	
-	cout << "Enter passenger desired row: "<<endl;
-	cin >> row;
+	cleanStandardInputStream();
+	//checking phone number follows format
+	while(phone_number[3] != '-' || phone_number[7] != '-'){
+		cout << "Invalid Formatting, please try again" << endl;
+		cin >> phone_number;
+		cleanStandardInputStream();
+	}
 
-	cout << "Enter passenger desired column: "<<endl;
+	cout << "Enter passenger desired row: (Must be From 1-20) "<<endl;
+	cin >> row;
+	cleanStandardInputStream();
+	while(row < 1 || row > 20){
+		cout << "Error: input is out of bounds. Please try again" << endl;
+		cin >> row;
+		cleanStandardInputStream();
+	}
+
+	cout << "Enter passenger desired column: (Must be Capital Letter from A-E)"<<endl;
 	cin >> col;
+	cleanStandardInputStream();
+	while(col < 'A' && col > 'E'){
+		cout << "Error: input is out of bounds. Please try again" << endl;
+		cin >> row;
+		cleanStandardInputStream();
+	}
 	
 	flight.add_passenger(first_name, last_name, phone_number, row, col, id);
 }
@@ -205,8 +228,8 @@ void add_passenger(Flight& flight){
 void remove_passenger(Flight& flight){
 	int id;
 	cout << "Please enter the id of the passenger that needs to be removed: \n";
-    cin >> id;
-
+    	cin >> id;
+	cleanStandardInputStream();
 	flight.remove_passenger(id);
 }
 
@@ -220,7 +243,7 @@ void save_file(const char* file_name, Flight* flight){
 		exit(1);
 	}
 
-out << left << setw(9) <<  flight->get_id() << setw(6) << flight->get_num_rows() << flight-> get_num_cols();
+	out << left << setw(9) <<  flight->get_id() << setw(6) << flight->get_num_rows() << flight-> get_num_cols();
 
 	//write all of the data back into the file from the flight class
 	for(size_t i = 0; i < passengers.size(); i++){
