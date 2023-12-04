@@ -154,6 +154,9 @@ void populate_flight(const char * file_name, Flight * flight){
 		if(in.eof()) break;
 
 		in >> id;
+		
+		// Ignore the newline character at the end of the line
+		in.ignore();
 
 		flight->add_passenger(fname, lname, phone_num, row, col, id);
 		
