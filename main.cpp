@@ -39,7 +39,7 @@ int main()
 				break;
 			case 5:
 				//Saves data to file
-				save_file("test_file.txt", &f);
+				save_file("flight_info.txt", &f);
 				wait_enter();
 				break;
 			case 6:
@@ -116,13 +116,15 @@ void populate_flight(const char * file_name, Flight * flight){
 	in >> flight_rows;
 	in >> flight_cols;
 	
+	in.ignore();
+
 	flight->set_id(flight_id);
 	flight->set_num_rows(flight_rows);
 	flight->set_num_cols(flight_cols);
 	// Initialize the seatmap
 	flight->initialize_seatmap();
 	
-
+	
 	//reading in passenger information
 	//#TODO:place passenger info into classes
 	do{
@@ -153,8 +155,8 @@ void populate_flight(const char * file_name, Flight * flight){
 
 		in >> id;
 		
-		// Ignore the newline character at the end of the line
 		in.ignore();
+		// Ignore the newline character at the end of the line
 
 		flight->add_passenger(fname, lname, phone_num, row, col, id);
 		
