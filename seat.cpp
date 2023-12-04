@@ -7,3 +7,6 @@ Seat::Seat(int r, char c){
 
 Seat::Seat() : row(0), column(0), status(false){}
 
+string Seat::disp_seat(){
+    return (to_string(row) + column);
+}

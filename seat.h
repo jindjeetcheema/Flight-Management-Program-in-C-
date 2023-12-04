@@ -22,6 +22,8 @@ public:
 	int get_row()const {return row;}
 	char get_column()const {return column;}
 	bool get_status()const {return status;}
+
+	string disp_seat();
 	
 };
 #endif

@@ -11,7 +11,8 @@ int main()
 {
 	Flight  f;
 	displayHeader();
-	populate_flight ("flight_info.txt", &f);
+	const char * file = "flight_info.txt";
+	populate_flight (file, &f);
 	//demo code. November 23
 	int choice = 1;
 	while (choice){
@@ -38,6 +39,7 @@ int main()
 				break;
 			case 5:
 				//Saves data to file
+				save_file("test_file.txt", &f);
 				wait_enter();
 				break;
 			case 6:
@@ -45,7 +47,8 @@ int main()
 				choice = 0;
 				break;
 			default:
-				cout << "Invalid match. Please Try Again.";
+				cout << "\nInvalid match. Please Try Again.\n";
+				break;
 		}
 	}
 }
@@ -53,7 +56,8 @@ int main()
 
 int menu()
 {
-	int choice = -1;
+	cin.clear();
+	int choice = -1;	
 	cout << "Please select one of the following options:\n";
 	cout <<"1. Display Flight Seat Map.\n";
 	cout <<"2. Display Passengers Information.\n";
@@ -62,7 +66,8 @@ int menu()
 	cout <<"5. Save data.\n";
 	cout <<"6. Quit.\n";
 	cout <<"\n Enter your choice:: (1, 2, 3, 4, 5 or 6) ";
-	cin >>choice;
+	cin >> choice;
+	cleanStandardInputStream();
 	return choice;
 }
 
@@ -78,11 +83,13 @@ void displayHeader()
 void wait_enter()
 {
 	//will wait until the user enters a newline value
+	cin.clear();
 	cout << "\n<<< Press Return to Continue>>>\n";
 	while (cin.get() != '\n');
+	cleanStandardInputStream();
 }
 
-void populate_flight(char * file_name, Flight * flight){
+void populate_flight(const char * file_name, Flight * flight){
 	/*
 	Requires:
 	char * file_name is a string which holds the name of a file in the working directory
@@ -107,6 +114,7 @@ void populate_flight(char * file_name, Flight * flight){
 	//reading in flight information
 	in.get(f, 10, '\n');
 	flight_id = f;
+	trim_trailing_spaces(flight_id);
 	in >> flight_rows;
 	in >> flight_cols;
 	
@@ -150,7 +158,7 @@ void populate_flight(char * file_name, Flight * flight){
 		flight->add_passenger(fname, lname, phone_num, row, col, id);
 		
 	}while(!in.eof()); //will perform the above actions until it reaches the end of file
-
+	in.close();
 
 }
 
@@ -193,8 +201,42 @@ void add_passenger(Flight& flight){
 
 void remove_passenger(Flight& flight){
 	int id;
-	cout << "Please enter the id of the passenger that needs to be removed: ";
+	cout << "Please enter the id of the passenger that needs to be removed: \n";
     cin >> id;
 
 	flight.remove_passenger(id);
+}
+
+void save_file(const char* file_name, Flight* flight){
+	vector<Passenger> passengers = flight->get_passengers();
+
+	ofstream out(file_name, ios::out);
+
+	if(out.fail()){
+		cout << "Unable to write to file. Please try again.\n";
+		exit(1);
+	}
+
+out << left << setw(9) <<  flight->get_id() << setw(6) << flight->get_num_rows() << flight-> get_num_cols();
+
+	//write all of the data back into the file from the flight class
+	for(size_t i = 0; i < size(passengers); i++){
+		Passenger passenger = passengers.at(i);
+		//out << left << setw(20) << passengers.at(i).get_first_name() << setw(20) << passengers.at(i).get_last_name() << setw(21) << passengers.at(i).get_phone_number()  << passengers.at(i).get_seat()->get_row()  << passengers.at(i).get_seat()->get_column() << right <<passengers.at(i).get_id();
+		out << left << setw(20) << passenger.get_first_name() 
+		<< setw(20) << passenger.get_last_name() 
+		<< setw(19) << passenger.get_phone_number()  
+		<< setw(4) << passenger.get_seat()->disp_seat()
+		<< setw(5) <<passenger.get_id()
+		<< endl;
+	}
+	out.close();
+}
+
+void cleanStandardInputStream(){
+	cin.clear();
+	int leftover;
+	do{
+		leftover = cin.get();
+	}while(leftover != '\n' && leftover != EOF);
 }

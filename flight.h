@@ -30,6 +30,7 @@ class Flight {
         string get_id()const {return flight_id;}
         int get_num_rows()const {return num_rows; }
         int get_num_cols()const {return num_cols; }
+        vector<Passenger> get_passengers()const {return passengers; }
         
         void initialize_seatmap();
 
