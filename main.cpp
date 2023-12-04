@@ -255,7 +255,7 @@ void save_file(const char* file_name, Flight* flight){
 		<< setw(5) <<passenger.get_id()
 		<< endl;
 	}
-	out << "\n"
+	out << "\n";
 	out.close();
 }
 
