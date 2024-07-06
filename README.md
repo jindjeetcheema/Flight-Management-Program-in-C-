@@ -12,14 +12,6 @@ This Flight Management System is a C++ program designed to manage passenger info
 - Remove existing passengers
 - Save flight data to a file
 
-## Files
-- `main.cpp`: Contains the main program logic and user interface
-- `main.h`: Header file for main.cpp
-- `seat.h`: Header file for the Seat class
-- `flight.h`: Header file for the Flight class
-- `passenger.h`: Header file for the Passenger class
-- `airline.h`: Header file for the Airline class
-- `flight_info.txt`: Text file storing flight and passenger information
 
 ## How to Use
 1. Compile the program using a C++ compiler.
